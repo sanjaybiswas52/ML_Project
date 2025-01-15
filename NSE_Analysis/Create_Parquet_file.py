@@ -63,13 +63,15 @@ def convert_to_parquet(input_file):
 
 # Example Usage
 if __name__ == "__main__":
-    input_files = [
+    '''input_files = [
         "/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (3).csv",  # Replace with your CSV file path
         "http://cdn.sundog-soft.com/Udemy/DataScience/cars.xls"
     ]
     
-    for input_file in input_files:
-        convert_to_parquet(input_file)
+    for input_file in input_files:'''
+    
+    input_file = "/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (2).csv"
+    convert_to_parquet(input_file)
 
         
    

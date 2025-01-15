@@ -11,14 +11,11 @@ df = pd.read_parquet('/Users/sanjaybiswas/Documents/Pycharm/MLCourse/Parquet_fil
 
 df1=df[['Mileage','Price']]
 bins =  np.arange(0,50000,10000)
-print(df1['Mileage'][:10])
-print(bins)
-
-print(pd.cut(df1['Mileage'],bins))
-
-'''
 groups = df1.groupby(pd.cut(df1['Mileage'],bins)).mean()
 print(groups.head())
-groups['Price'].plot.line()
+groups['Price'].plot.line(c='r', label='Multiple Regression Line')
+plt.title("Multiple Regression Example")
+plt.xlabel("X (Mileage)")
+plt.ylabel("y (Price)")
+plt.legend()
 plt.show()
-'''
