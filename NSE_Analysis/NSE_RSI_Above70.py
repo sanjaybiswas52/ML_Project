@@ -26,8 +26,8 @@ def create_bar_chart(data):
 
         # Add titles and labels
         plt.title('Bar Chart of New Stocks (% Change)', fontsize=14)
-        plt.xlabel('Symbol', fontsize=12)
-        plt.ylabel('% Change', fontsize=12)
+        plt.xlabel('X(Stock Name)', fontsize=12)
+        plt.ylabel('Y(% Change)', fontsize=12)
         plt.xticks(rotation=45, ha='right', fontsize=10)
         plt.tight_layout()  # Adjust layout to avoid clipping
 
@@ -37,7 +37,7 @@ def create_bar_chart(data):
         print("The required columns 'Symbol' and '% Chg' are not present for the bar chart.")
 
 # File paths (modify as needed)
-curr_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (2).csv'  # Replace with your current file path
+curr_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (4).csv'  # Replace with your current file path
 prev_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner.csv'  # Replace with your previous file path
 
 # Load the files

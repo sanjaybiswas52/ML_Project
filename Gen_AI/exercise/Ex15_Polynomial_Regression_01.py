@@ -14,8 +14,8 @@ purchaseAmount = np.random.normal(50.0, 10.0, 1000) / pageSpeeds
 print(f"\npageSpeeds :{pageSpeeds[:10]} \n\npurchaseAmount :{purchaseAmount[:10]}\n")
 
 scatter(pageSpeeds, purchaseAmount)
-#plt.show()
-
+plt.show()
+'''
 x = np.array(pageSpeeds)
 y = np.array(purchaseAmount)
 
@@ -29,3 +29,4 @@ plt.xlabel("X (PageSpeeds)")
 plt.ylabel("y (PurchaseAmount)")
 plt.legend()
 plt.show()
+'''

@@ -1,13 +1,22 @@
-import pandas as pd
+import numpy as np
+from pylab import *
 
-data = {
-    'Department': ['HR', 'IT', 'HR', 'Finance', 'IT', 'Finance'],
-    'Employee': ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Frank'],
-    'Salary': [5000, 7000, 6000, 8000, 6500, 7500]
-}
+np.random.seed(2)
 
-df = pd.DataFrame(data)
+pageSpeeds = np.random.normal(3.0, 1.0, 100)
+purchaseAmount = np.random.normal(50.0, 30.0, 100) / pageSpeeds
 
-# Group by 'Department' and calculate the sum of 'Salary'
-grouped = df.groupby('Department')['Salary'].sum()
-print(grouped)
+scatter(pageSpeeds, purchaseAmount)
+plt.show()
+
+trainX = pageSpeeds[:80]
+testX = pageSpeeds[80:]
+
+trainY = purchaseAmount[:80]
+testY = purchaseAmount[80:]
+
+scatter(trainX, trainY)
+plt.show()
+
+scatter(testX, testY)
+plt.show()

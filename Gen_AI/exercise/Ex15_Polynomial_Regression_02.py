@@ -9,8 +9,11 @@ pageSpeeds = np.random.normal(3.0, 1.0, 100)
 purchaseAmount = np.random.normal(50.0, 30.0, 100) / pageSpeeds
 
 # Split the data into training and testing sets
+# 80% of the data will be used for training and 20% for testing
 trainX = pageSpeeds[:80]
 testX = pageSpeeds[80:]
+
+# 20% of the data will be used for testing
 trainY = purchaseAmount[:80]
 testY = purchaseAmount[80:]
 
