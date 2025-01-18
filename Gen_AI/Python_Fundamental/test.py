@@ -1,22 +1,6 @@
-import numpy as np
-from pylab import *
+from mylibrary import file_movement as fm
 
-np.random.seed(2)
+for files in fm.search_files('/Users/sanjaybiswas/Downloads', 'csv'):
+    print(f" ---{files}")
 
-pageSpeeds = np.random.normal(3.0, 1.0, 100)
-purchaseAmount = np.random.normal(50.0, 30.0, 100) / pageSpeeds
-
-scatter(pageSpeeds, purchaseAmount)
-plt.show()
-
-trainX = pageSpeeds[:80]
-testX = pageSpeeds[80:]
-
-trainY = purchaseAmount[:80]
-testY = purchaseAmount[80:]
-
-scatter(trainX, trainY)
-plt.show()
-
-scatter(testX, testY)
-plt.show()
+#fm.delete_files(fm.search_files('/Users/sanjaybiswas/Downloads', 'chartink_AllInOne'))
