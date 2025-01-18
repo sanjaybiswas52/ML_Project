@@ -3,6 +3,7 @@ import os
 from PyPDF2 import PdfReader
 import subprocess
 from docx import Document
+import shutil  # Import the shutil module for moving files
 
 def convert_to_parquet(input_file, OUTPUT_DIR):
     # Execute a terminal command fro clear screen
