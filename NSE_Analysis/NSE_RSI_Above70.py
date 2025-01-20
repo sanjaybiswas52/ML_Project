@@ -37,7 +37,7 @@ def create_bar_chart(data):
         print("The required columns 'Symbol' and '% Chg' are not present for the bar chart.")
 
 # File paths (modify as needed)
-curr_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (4).csv'  # Replace with your current file path
+curr_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (1).csv'  # Replace with your current file path
 prev_above70 = '/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner.csv'  # Replace with your previous file path
 
 # Load the files
