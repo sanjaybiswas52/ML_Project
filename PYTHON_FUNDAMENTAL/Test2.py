@@ -1,12 +1,13 @@
-#import pandas as pd
+import pandas as pd
 
-def divisible_3(num):
-    #return num % 3 == 0
-    val = num % 3
-    if val == 0:
-        print(f"{num} is divisible by 3")
-    else:
-        print(f"{num} is not divisible by 3")
+# Sample DataFrame with Multi-Level Columns
+data = {
+    ('rating', 'size'): [10, 20],
+    ('rating', 'mean'): [4.5, 4.8]
+}
+df = pd.DataFrame(data)
+print(f"df data: {df}")
+# Flatten column names
+df.columns = [f'{i}|{j}' if j != '' else f'{i}' for i, j in df.columns]
 
-
-print(divisible_3(21))
+print(f"\ndf2 data: {df}")

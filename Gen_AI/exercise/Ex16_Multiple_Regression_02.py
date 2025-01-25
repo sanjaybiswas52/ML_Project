@@ -19,3 +19,5 @@ est = sm.OLS(y, X).fit()
 print(est.summary())
 
 print(f"Probability based on Door\n{y.groupby(df.Doors).mean()})")
+
+

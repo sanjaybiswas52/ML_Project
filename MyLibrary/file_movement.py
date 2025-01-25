@@ -5,7 +5,7 @@ import subprocess
 from docx import Document
 import shutil  # Import the shutil module for moving files
 
-def convert_to_parquet(input_file, OUTPUT_DIR):
+def convert_csv_to_parquet(input_file, OUTPUT_DIR):
     # Execute a terminal command fro clear screen
     print(subprocess.run(["clear"], capture_output=True, text=True).stdout)
 
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     
     for input_file in input_files:'
     input_file = "/Users/sanjaybiswas/Downloads/ChartInk_RSI_above_70_MonthlyWeekly_Timeframe, Technical Analysis Scanner (2).csv"
-    convert_to_parquet(input_file)
+    convert_csv_to_parquet(input_file)
 
 '''   
 def convert_doc_to_text(file_path, output_path):
