@@ -20,10 +20,17 @@ df2.to_sql('ratings', conn, index=False, if_exists='replace')
 query = """
 SELECT r.user_id, m.movie_id, m.title, r.rating
 FROM moives m inner join ratings r on (m.movie_id = r.movie_id)
+WHERE r.user_id = 308 and m.title = 'Toy Story (1995)'
 """
+
+
 
 # Execute the query and fetch the result
 ratings = pd.read_sql_query(query, conn)
+print("Joined Data:")
+print(ratings)
+exit()
+
 movieRatings = ratings.pivot_table(index=['user_id'],columns=['title'],values='rating')
 
 starWarsRatings = movieRatings['Star Wars (1977)']

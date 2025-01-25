@@ -13,12 +13,18 @@ movies = pd.read_csv('/Users/sanjaybiswas/Documents/Pycharm/MLCourse/ml-100k/u.i
 #print(movies.head())
 
 ratings = pd.merge(movies, ratings)
-#print("\nMerged Ratings Data:")
-#print(ratings.head())
+
+# Write the output to an Excel file
+output_file = '/Users/sanjaybiswas/Documents/Pycharm/data/correlation_coefficient/similar_movies.xlsx'
+ratings.to_excel(output_file,  sheet_name='UserRatings', index=False)
 
 movieRatings = ratings.pivot_table(index=['user_id'],columns=['title'],values='rating')
 print("\nPivot Table (Ratings by User and Movie):")
 print(f"Pivot Columns : {movieRatings.columns}      \n values {movieRatings.head()}")
+
+# Write movieStats to a new sheet in the existing Excel file
+with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
+    movieRatings.to_excel(writer, sheet_name='MovieRatings')
 
 starWarsRatings = movieRatings['Star Wars (1977)']
 print("\nStar Wars (1977):")
@@ -39,10 +45,9 @@ print(df)
 
 df.rename(columns={'title': 'Movie'}, inplace=True)
 
-# Write the output to an Excel file
-output_file = '/Users/sanjaybiswas/Documents/Pycharm/data/correlation_coefficient/similar_movies.xlsx'
-#with pd.ExcelWriter(output_file, mode='w', engine='openpyxl') as writer:
-df.to_excel(output_file,  sheet_name='Correlation', index=False)
+# Write movieStats to a new sheet in the existing Excel file
+with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
+    df.to_excel(writer, sheet_name='Correlation')
 
 print(f"\nOutput written to Excel file: {output_file}")
 
@@ -60,7 +65,7 @@ popularMovies = movieStats['rating']['size'] >= 100
 movieStats[popularMovies].sort_values([('rating', 'mean')], ascending=False)[:15]
 
 with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
-    movieStats.to_excel(writer, sheet_name='Rate_above_100_people')
+    movieStats[popularMovies].to_excel(writer, sheet_name='Rate_above_100_people')
 
 # Updated for newer Pandas releases that don't allow merging between different levels; we must flatten it first now.
 mappedColumnsMoviestat=movieStats[popularMovies]
