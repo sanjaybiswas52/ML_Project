@@ -58,14 +58,16 @@ def ComputeDistance(a, b):
     popularityB = b[2]
     popularityDistance = abs(popularityA - popularityB)
     return genreDistance + popularityDistance
-    
+
+print(movieDict[2])
+print(movieDict[4])
 ComputeDistance(movieDict[2], movieDict[4])
 #print(f"Distance between 2 and 4: {ComputeDistance(movieDict[2], movieDict[4])}")
 #Distance between 2 and 4: 0.8004574042309892
 
-print(movieDict[2])
-print(movieDict[4])
 print(f"Distance between 2 and 4: {ComputeDistance(movieDict[2], movieDict[4])}")
+
+exit()
 #'GoldenEye (1995)', array([0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]), np.float64(0.22298456260720412), np.float64(3.2061068702290076))
 #(Get Shorty (1995)', array([0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), np.float64(0.3567753001715266), np.float64(3.550239234449761))
 # Distance between 2 and 4: 0.8004574042309892
