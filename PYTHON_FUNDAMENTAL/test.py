@@ -1,57 +1,42 @@
-import os
-from datetime import datetime
+import pandas as pd
+import numpy as np
 
-"""
-print(datetime.strptime('06-Jan-2025', '%d-%b-%Y').strftime('%d-%b-%Y'))
-date_object = datetime.strptime('06-Jan-2025', '%d-%b-%Y')
-print(date_object.strftime('%d-%b-%Y'))
+'''
+KNN (K-Nearest-Neighbors)
+As an example, let's look at the MovieLens data. We'll try to guess the rating of a movie by looking at the 10 movies
+that are closest to it in terms of genres and popularity.
+To start, we'll load up every rating in the data set into a Pandas DataFrame:
+'''
 
+# Load ratings data
+r_cols = ['user_id', 'movie_id', 'rating']
+ratings = pd.read_csv('/Users/sanjaybiswas/Documents/Pycharm/MLCourse/ml-100k/u.data', sep='\t', names=r_cols, usecols=range(3))
 
-filename = '/Users/sanjaybiswas/Downloads/csv_files/T20_GL_gainers_NIFTY_14-Jan-2025.csv'
-parts = filename.split('_')
-print(len(parts))
-print(parts[-1].split(".")[0].split("-"))
+# Write the output to an Excel file
+output_file = '/Users/sanjaybiswas/Documents/Pycharm/data/correlation_coefficient/KNN.xlsx'
 
+# Number of ratings for each movie by user
+# Replace `np.size` and `np.mean` with their string equivalents
+movieProperties = ratings.groupby('movie_id').agg({'rating': ['size', 'mean']})
 
-if len(parts) >= 3:
-    day, month, year = parts[-1].split(".")[0].split("-")  # Split and extract components
-    date_str = f"{day}-{month}-{year}"
-    print(date_str)
-    parsed_date = datetime.strptime(date_str, '%d-%b-%Y')  # Parse the date
-    parsed_date.strftime('%Y-%m-%d')  # Return in 'yyyy-mm-dd' format
-    print(parsed_date.strftime('%Y-%m-%d') )
+# Normalize the number of ratings
+movieNumRatings = pd.DataFrame(movieProperties['rating']['size'])
+movieNormalizedNumRatings = movieNumRatings.apply(lambda x: (x - np.min(x)) / (np.max(x) - np.min(x)))
+movieNormalizedNumRatings.head()
 
-    """
-import os
-from datetime import datetime
+movieDict = {}
+with open(r'/Users/sanjaybiswas/Documents/Pycharm/MLCourse/ml-100k/u.item', encoding="ISO-8859-1") as f:
+    for line in f:
+        fields = line.rstrip('\n').split('|')
+        movieID = int(fields[0])
+        name = fields[1]
+        genres = fields[5:25]
+        genres = map(int, genres)  # Convert genre fields to integers
+        movieDict[movieID] = (
+            name,
+            np.array(list(genres)),
+            movieNormalizedNumRatings.loc[movieID].get('size'),
+            movieProperties.loc[movieID].rating.get('mean'),
+        )
 
-def extract_date_from_filename(filename):
-    try:
-        # Handle "dd-MMM-yyyy" format (e.g., "14-Jan-2025")
-        if '-' in filename:
-            # Extract the last portion that looks like a date
-            possible_date = filename.split('_')[-1].split('.')[0]  # Split on underscore and remove the file extension
-            print("Possible Date: " + possible_date)
-            
-            # Parse the date
-            parsed_date = datetime.strptime(possible_date, '%d-%b-%Y')  
-            print("Parsed Date: " + str(parsed_date))
-            
-            # Return in 'yyyy-mm-dd' format
-            return parsed_date.strftime('%Y-%m-%d')  
-
-        return 'unknown'  # Return 'unknown' if no valid date is found
-    except Exception as e:
-        print(f"Error parsing date from filename '{filename}': {e}")
-        return 'unknown'
-    
-# Test Cases
-
-filenames = [
-    "14-Jan-2025.csv",  # Numeric date
-    "T20_GL_gainers_NIFTY_14-Jan-2025.csv",  # Named month date
-    "summary_report.csv"  # No recognizable date
-]
-
-for filename in filenames:
-    print(f"Filename: {filename}, Extracted Date: {extract_date_from_filename(filename)}")
+print(movieDict)
