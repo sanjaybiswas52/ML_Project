@@ -2,6 +2,7 @@
 
 set +x
 
+cp /Users/sanjaybiswas/Library/DBeaverData/workspace6/General/Scripts/*.sql /Users/sanjaybiswas/Documents/Pycharm/pythonProject/SQL_Script
 git init
 git add README.md
 git remote add origin https://github.com/sanjaybiswas52/ML_Project.git

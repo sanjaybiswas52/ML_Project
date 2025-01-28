@@ -7,8 +7,7 @@ As an example, let's look at the MovieLens data. We'll try to guess the rating o
 
 To start, we'll load up every rating in the data set into a Pandas DataFrame:
 '''
-
-
+       
 r_cols = ['user_id', 'movie_id', 'rating']
 ratings = pd.read_csv('/Users/sanjaybiswas/Documents/Pycharm/MLCourse/ml-100k/u.data', sep='\t', names=r_cols, usecols=range(3))
 
@@ -26,6 +25,7 @@ movieNumRatings = pd.DataFrame(movieProperties['rating']['size'])
 movieNormalizedNumRatings = movieNumRatings.apply(lambda x: (x - np.min(x)) / (np.max(x) - np.min(x)))
 
 movieDict = {}
+#r_cols = ['MovieId', 'Name', 'Release', 'Filer', 'Url', 'Adventure', 'Comedy', 'Horror', 'Romance', 'Drama', 'Science_fiction', 'Thriller', 'Suspense', 'Sports', 'Western', 'Musical', 'Documentary', 'Action', 'Fantasy', 'Historical', 'Melodrama', 'Pornographic', 'Noir', 'Pure_hybrid']
 with open(r'/Users/sanjaybiswas/Documents/Pycharm/MLCourse/ml-100k/u.item', encoding="ISO-8859-1") as f:
     temp = ''
     for line in f:
@@ -62,12 +62,9 @@ def ComputeDistance(a, b):
 print(movieDict[2])
 print(movieDict[4])
 ComputeDistance(movieDict[2], movieDict[4])
-#print(f"Distance between 2 and 4: {ComputeDistance(movieDict[2], movieDict[4])}")
+print(f"\nDistance between 2 and 4: {ComputeDistance(movieDict[2], movieDict[4])}\n")
 #Distance between 2 and 4: 0.8004574042309892
 
-print(f"Distance between 2 and 4: {ComputeDistance(movieDict[2], movieDict[4])}")
-
-exit()
 #'GoldenEye (1995)', array([0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]), np.float64(0.22298456260720412), np.float64(3.2061068702290076))
 #(Get Shorty (1995)', array([0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), np.float64(0.3567753001715266), np.float64(3.550239234449761))
 # Distance between 2 and 4: 0.8004574042309892
@@ -99,6 +96,5 @@ for neighbor in neighbors:
     
 avgRating /= K
 
-
 #with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
-    #movieNormalizedNumRatings.to_excel(writer, sheet_name='movieNormalizedNumRatings')
+    #movie_genre.to_excel(writer, sheet_name='movie_genre')
