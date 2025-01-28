@@ -25,13 +25,13 @@ columns = ["student_id", "subject", "marks"]
 df = spark.createDataFrame(data, columns)
 
 # Define a window specification for each subject
-windowSpec = Window.partitionBy("subject").orderBy(col("marks").desc())
+partition_data = Window.partitionBy("subject").orderBy(col("marks").desc())
 
 # Add dense rank column based on marks
-df_with_rank = df.withColumn("rank", dense_rank().over(windowSpec))
+df_rank = df.withColumn("rank", dense_rank().over(partition_data))
 
 # Filter rows where rank is 2 (second highest)
-second_highest = df_with_rank.filter(col("rank") == 2).select("subject", "marks")
+second_highest = df_rank.filter(col("rank") == 2).select("student_id", "subject", "marks", "rank")
 
 # Show the results
 second_highest.show()
