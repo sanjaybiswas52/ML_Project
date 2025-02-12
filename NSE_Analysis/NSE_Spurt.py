@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
+
 # Calculate yesterday's date
 yesterday = datetime.today() - timedelta(days=0)
 last_date = yesterday.strftime('%d%m%Y')
