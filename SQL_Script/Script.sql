@@ -18,8 +18,24 @@ WHERE rank = 2;
 
 
 
+SELECT 
+    dept,
+    empid,
+    empname,
+    sal,
+    LEAD(sal) OVER (PARTITION BY dept ORDER BY sal ASC) AS next_salary
+FROM 
+    employee
+where sal > 6000;
 
+select * from employee where dept in ('Finance','Sales')
 
-a	1	46
-b	2	50
-c	3	76
+create table route (rn integer, depa)
+
+select * from Employee2 e 
+select * from Employees
+
+CREATE TABLE sqlite.emp (empid int, empname varchar(30), dept int, sal int);
+
+insert into emp(empid,empname,sal) values (select empid, empname, sal from Employee  )
+select * from departments 
